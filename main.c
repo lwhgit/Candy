@@ -18,14 +18,14 @@ int main() {
 
     scanf("%d %d", &n, &m);
 
-    eatDay = m / 2;             // 먹는날
-    giveDay = eatDay + m % 2;   // 받는날
+    eatDay = m / 2;             // 먹는날 총 날짜에서 짝수 갯수 구하면 됨.
+    giveDay = eatDay + m % 2;   // 받는날 총 날짜에서 홀수 갯수.
 
     int i;
-    for (i = 0; i < giveDay; i ++) {
+    for (i = 0; i < giveDay; i ++) {    // 두번째 줄에서 입력받는 코드.
         scanf("%s", give[i]);
     }
-    for (i = 0; i < eatDay; i ++) {
+    for (i = 0; i < eatDay; i ++) {     // 세번째 줄에서 입력받는 코드
         scanf("%d", &eat[i]);
     }
 
@@ -33,15 +33,15 @@ int main() {
     int day;
     for (day = 1; day <= m; day ++) {
         if (day % 2 == 1) {
-            putCandy(give[(day - 1) / 2]);
+            putCandy(give[(day - 1) / 2]);  // 홀수 일에는 사탕을 받음
         } else if (day % 2 == 0) {
-            eatCandy(eat[(day - 1) / 2]);
+            eatCandy(eat[(day - 1) / 2]);   // 짝수 일에는 사탕을 먹음
         }
     }
 
-    showBox();
+    showBox();                              // 현재 상태 출력
 
-    system("pause");
+    system("pause");    // 비주얼 스튜디오or컴파일후 실행시 바로 꺼지지 않기 위함
 
     return 0;
 }
