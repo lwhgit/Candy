@@ -4,9 +4,9 @@
 #define MAX 100
 
 int n, m, giveDay, eatDay, index;
-int give[MAX];
+int eat[MAX];
 char box[MAX];
-char eat[MAX][MAX];
+char give[MAX][MAX];
 
 void putCandy(char *c);
 void eatCandy(int count);
@@ -23,20 +23,21 @@ int main() {
 
     int i;
     for (i = 0; i < giveDay; i ++) {
-        scanf("%s", eat[i]);
+        scanf("%s", give[i]);
     }
-    for (i = 0; i < giveDay; i ++) {
-        scanf("%d", &give[i]);
+    for (i = 0; i < eatDay; i ++) {
+        scanf("%d", &eat[i]);
     }
 
-    
+
     int day;
     for (day = 1; day <= m; day ++) {
         if (day % 2 == 1) {
-            putCandy(eat[(day - 1) / 2]);
+            putCandy(give[(day - 1) / 2]);
         } else if (day % 2 == 0) {
-            eatCandy(give[(day - 1) / 2]);
+            eatCandy(eat[(day - 1) / 2]);
         }
+        showBox();
     }
 
     showBox();
@@ -49,18 +50,18 @@ int main() {
 void putCandy(char* c) {
     int i;
     for (i = 0; *(c + i) != 0; i ++) {
-        box[index] =  *(c + i);
+        box[index] = *(c + i);
         index ++;
 
-        if (index >= n) {        // 여긴 안전성때문에 넣은곳
-            index = n - 1;       // 딱히 필요한 코드는 아니지만 혹시몰라 넣은코드.
-        }                        //
+        if (index > n) {        // 여긴 안전성때문에 넣은곳
+            index = n;          // 딱히 필요한 코드는 아니지만 혹시몰라 넣은코드.
+        }                       //
     }
 }
 
 void eatCandy(int count) {
     int i;
-    for (i = 0;i < count;i ++) {
+    for (i = 0; i < count; i ++) {
         box[index] = 0;
         index --;
 
@@ -72,7 +73,7 @@ void eatCandy(int count) {
 
 void showBox() {
     int i;
-    for (i = index - 1;i >= 0; i --) {
+    for (i = index - 1; i >= 0; i --) {
         printf("%c", box[i]);
     }
 
