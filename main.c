@@ -16,7 +16,7 @@ int main() {
 
     index = 0;                  // 현재 상자 위치
 
-    scanf_s("%d %d", &n, &m);
+    scanf("%d %d", &n, &m);
 
     eatDay = m / 2;             // 먹는날
     giveDay = eatDay + m % 2;   // 받는날
