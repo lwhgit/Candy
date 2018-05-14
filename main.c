@@ -37,7 +37,6 @@ int main() {
         } else if (day % 2 == 0) {
             eatCandy(eat[(day - 1) / 2]);
         }
-        showBox();
     }
 
     showBox();
