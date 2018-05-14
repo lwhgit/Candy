@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #define MAX 100
 
@@ -35,13 +34,11 @@ int main() {
         if (day % 2 == 1) {
             putCandy(give[(day - 1) / 2]);  // 홀수 일에는 사탕을 받음
         } else if (day % 2 == 0) {
-            eatCandy(eat[(day - 1) / 2]);   // 짝수 일에는 사탕을 먹음
+            eatCandy(eat[(day - 2) / 2]);   // 짝수 일에는 사탕을 먹음
         }
     }
 
     showBox();                              // 현재 상태 출력
-
-    system("pause");    // 비주얼 스튜디오or컴파일후 실행시 바로 꺼지지 않기 위함
 
     return 0;
 }
@@ -49,12 +46,10 @@ int main() {
 void putCandy(char* c) {
     int i;
     for (i = 0; *(c + i) != 0; i ++) {
-        box[index] = *(c + i);
-        index ++;
-
-        if (index > n) {        // 여긴 안전성때문에 넣은곳
-            index = n;          // 딱히 필요한 코드는 아니지만 혹시몰라 넣은코드.
-        }                       //
+        if (index < n) {
+            box[index] = *(c + i);
+            index ++;
+        }
     }
 }
 
@@ -71,10 +66,12 @@ void eatCandy(int count) {
 }
 
 void showBox() {
-    int i;
-    for (i = index - 1; i >= 0; i --) {
-        printf("%c", box[i]);
+    if (index == 0) {
+        printf("0");
+    } else {
+        int i;
+        for (i = index - 1; i >= 0; i --) {
+            printf("%c", box[i]);
+        }
     }
-
-    printf("\n");
 }
